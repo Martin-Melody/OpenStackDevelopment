@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "open-stack-development": {
+      "hosting": {
+        "Task-Supplier": [
+          "open-stack-development"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "open-stack-development"
+  }
+}

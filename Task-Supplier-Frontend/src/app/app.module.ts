@@ -32,10 +32,28 @@ import { ConfirmationComponent } from './Components/confirmation/confirmation.co
 import { ForgotPasswordComponent } from './Components/forgot-password/forgot-password.component';
 // End of Angular Material
 
+// Angular Firebase
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import {
+  provideAnalytics,
+  getAnalytics,
+  ScreenTrackingService,
+  UserTrackingService,
+} from '@angular/fire/analytics';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideFunctions, getFunctions } from '@angular/fire/functions';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
+import { providePerformance, getPerformance } from '@angular/fire/performance';
+import { provideStorage, getStorage } from '@angular/fire/storage';
+
+// End of Angular Firebase
+
 import { AuthModule, AuthHttpInterceptor } from '@auth0/auth0-angular';
 import { NavbarComponent } from './Components/navbar/navbar.component';
-import { environment } from 'src/environments/environment';
 import { ProfileComponent } from './Components/profile/profile.component';
+
 
 
 
@@ -67,12 +85,14 @@ import { ProfileComponent } from './Components/profile/profile.component';
     MatCheckboxModule,
     MatChipsModule,
     MatButtonModule,
-    AuthModule.forRoot({
-      ...environment.auth0,
-      httpInterceptor: {
-        allowedList: [`${environment.apiUri}suppliers`],
-      },
-    }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAnalytics(() => getAnalytics()),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
+    provideMessaging(() => getMessaging()),
+    providePerformance(() => getPerformance()),
+    provideStorage(() => getStorage()),
   ],
   providers: [
     {
@@ -80,6 +100,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
       useClass: AuthHttpInterceptor,
       multi: true,
     },
+    ScreenTrackingService,UserTrackingService,
   ],
 
   bootstrap: [AppComponent],
