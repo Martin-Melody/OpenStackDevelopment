@@ -1,0 +1,27 @@
+###
+POST http://localhost:3000/sign-up HTTP/1.1
+Content-Type: application/json
+
+{"username": "user#002",
+"email": "user002@mail.com",
+"password": "password2",
+"roles": ["user", "read"]}
+
+###
+POST http://localhost:3000/sign-up HTTP/1.1
+Content-Type: application/json
+
+{"username": "user#003",
+"email": "user003@mail.com",
+"password": "password2",
+"roles": "user"}
+
+
+
+### login
+POST http://localhost:3000/auth/local HTTP/1.1
+content-type: application/json
+
+{ "username": "user#001",
+"password" : "password1"}
+

@@ -1,0 +1,21 @@
+.modal-box{
+    min-height: 200px;
+    width: 100%;
+    max-width: 580px;
+    background: white;
+    border-radius: 5px;
+    padding: 35px;
+}
+
+
+::ng-deep .mat-form-field {
+    width: 100%;
+}
+
+
+.btn-Container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+

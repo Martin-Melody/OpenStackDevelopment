@@ -1,0 +1,92 @@
+
+<app-navbar></app-navbar>
+<div class="centered-content">
+    <div class="delivery-manager-container">
+        <div class="sidebar has-background-white">
+            <h1 class="title has-text-primary">
+                suppliers
+            </h1>
+            <div class="delivery-menu">
+                <a class="delivery-menu-items" *ngFor="let suppliers of Suppliers;index as i"
+                    [routerLink]="['/suppliers', suppliers._id]" routerLinkActive="is-active">
+                    <p class="supplierName">{{suppliers.SupplierName}}</p>
+                    <mat-icon class="Supplier-Delete-Icon" (click)="DeleteSupplier()">delete_outline</mat-icon>
+                    <mat-icon class="Supplier-Edit-Icon" (click)="editSupplier(suppliers)">edit</mat-icon>
+                </a>
+            </div>
+
+
+            
+
+            <button class="button is-primary has-text-white" routerLink="/new-supplier">+ New Supplier</button>
+
+        </div>
+
+        <div class="delivery-items-container has-background-light">
+            <h1 class="title has-text-primary">
+                Products
+            </h1>
+            <div class="columns titles">
+                <div class="column is-4">
+                    <p class="subtitle">Title</p>
+                </div>
+                <div class="column is-2">
+                    <p class="subtitle">Description</p>
+                </div>
+                <div class="column">
+                    <p class="subtitle">Price</p>
+                </div>
+            </div>
+            <!-- </div> -->
+
+            <!-- Delivery Elements -->
+            <div class="outer-container">
+
+                <div class="NoProductsLoaded" *ngIf="!ProductsLoaded && Suppliers">
+                    There are no products! Click the add button to create some.
+                </div>
+
+                <div class="NoSupplierSelected" *ngIf="!Suppliers&&!SelectedSupplierID">
+                    Create a supplier!
+                </div>
+
+                <div class="NoSupplierSelected" *ngIf="ProductsLoaded && !SelectedSupplierID">
+                    Select a Supplier
+                </div>
+
+                <div class="inner-container" *ngIf="ProductsLoaded && SelectedSupplierID">
+                    <div class="delivery" *ngFor="let products of Products" (click)="onAddedToBasket(products)"
+                        [ngClass]="{'out-of-stock' : products.addedToBasket}">
+                        <div class="container">
+                            <div class="columns">
+                                <div class="column is-2">
+                                    <p class="product-elements">{{products.title}}</p>
+
+                                </div>
+                                <div class="column is-8">
+                                    <p class="product-elements">{{products.Description}}</p>
+
+                                </div>
+                                <div class="column is-1">
+                                    <p class="product-elements">${{products.Price}}</p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="column is-1">
+                            <mat-icon class="deleteIcon" (click)="DeleteItem(products)">delete_outline</mat-icon>
+                        </div>
+                        <div class="column is-1">
+                            <mat-icon class="editIcon" (click)="EditProduct(products)">edit</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="SelectedSupplierID" routerLink="./new-product" class="circle-add-button button is-primary">
+                <img src="../../../assets/plus-icon.svg" alt="plus icon">
+            </div>
+        </div>
+    </div>
+</div>

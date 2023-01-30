@@ -1,0 +1,13 @@
+# @name loginusingAuth0
+POST https://dev-h44j37rzds88jnjr.eu.auth0.com/oauth/token
+content-type: application/json
+
+{"client_id":"okZAVneLaXLr9do9nfPDAp6wh09p1RPz",
+"client_secret":"_ElfEwXHAh8zRwoDlJhitDfF6_cqRkxkW1-GCkOSmkXjIAu2Zz3pVunnRZrZzbZc",
+"audience":"suppliers","grant_type":"client_credentials"}
+
+
+###
+GET http://localhost:3000/suppliers
+Authorization: Bearer {{loginusingAuth0.response.body.access_token}}
+

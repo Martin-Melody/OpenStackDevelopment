@@ -1,0 +1,38 @@
+// This is Where We Put Global Styles and Change Variables Values.
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inter:wght@300&family=Rubik:ital,wght@1,300&display=swap');
+
+$turquoise: #44ddd0;
+$green: #27d7a1;
+$light-green: #45f69e;
+$light: #f8f8f8;
+$dark-green: rgb(0,100,80);
+
+// Update Bulma Global Variables.
+$family-sans-serif: "Inter","sans-serif";
+$primary:$green;
+
+$link:$light-green;
+
+// Update Some of Bulmas Component Variables.
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+// Set Custom Global Styles (Will be applied to whole app).
+
+html{
+    background:linear-gradient(to right top, $turquoise, $green);
+}
+
+html, body{
+    height: 100%;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
